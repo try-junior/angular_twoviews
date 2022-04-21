@@ -1,0 +1,46 @@
+  <div class="container">
+    <!--<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#dialogo2"><i class="fa fa-pencil"></i></button>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#dialogo1"><i class="fa fa-trash"></i></button>-->
+
+
+    <div class="modal fade" id="dialogo1">
+      <div class="modal-dialog modal-sm modal-dialog-centered">
+        <div class="modal-content">
+
+          <!-- cabecera del diálogo -->
+          <div class="modal-header">
+            <h4 class="modal-title">Remove row</h4>
+          </div>
+
+          <!-- cuerpo del diálogo -->
+          <div class="modal-body">
+            <tbody>
+                <tr>
+                  <span>
+                    {{userr.name}}
+                  </span>
+                </tr>
+                <tr>
+                  <span>
+                    {{userr.email}}
+                  </span>
+                </tr>
+                <tr>
+                  <span>
+                    {{userr.department}}
+                  </span>
+                </tr>
+              </tbody>
+            </div>
+
+          <!-- pie del diálogo -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CANCEL</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">REMOVE</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+

@@ -1,0 +1,51 @@
+
+<table class="table table-bordered table-hover" >
+  <thead class="table-dark">
+    <tr>
+      <th scope="col" *ngFor="let header of headers">
+        {{header}}
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users let index= index">
+      <td>
+        <label *ngIf="editable==false" size="20">{{user.name}}</label>
+        <input *ngIf="editable==true" [value]="user.name" size="20">
+      </td>
+      <td>
+        <label *ngIf="editable==false">{{user.email}}</label>
+        <input *ngIf="editable==true" [value]="user.email">
+      </td>
+      <td>
+        <label *ngIf="editable==false">{{user.department}}</label>
+
+        <!--<select *ngIf="editable==true" name="selectedQuantity" id="aantal" class="form-control" >
+          <option *ngFor="let department of departments" >{{user.department}}</option>
+        </select>-->
+
+        <select *ngIf="editable==true" class="form-control"
+        [(ngModel)]="user.department" >
+          <option *ngFor="let department of departments" [value]="department">
+            {{department}}
+          </option>
+        </select>
+
+      </td>
+      <td>
+
+        <app-dialog [userr] =userselected class="dialog" id="myModal"></app-dialog>
+
+        <button *ngIf="editable==false" type="button" class="btn btn-primary" (click)="edit()"><i class="fa fa-pencil"></i></button>
+        <button *ngIf="editable==true" type="button" class="btn btn-primary" ><i class="fa fa-check"></i></button>
+
+        <button *ngIf="editable==false" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#dialogo1" (click)="selectuser(index)" ><i class="fa fa-trash" ></i></button>
+        <button *ngIf="editable==true" type="button" class="btn btn-primary" (click)="edit()"><i class="fa fa-times"></i></button>
+
+      </td>
+      <td>
+        <app-ngbd-dropdown-basic></app-ngbd-dropdown-basic>
+      </td>
+    </tr>
+  </tbody>
+</table>
