@@ -1,6 +1,7 @@
 import { Component, OnInit,Input } from '@angular/core';
 import { UserEntity } from 'src/app/model/UserEntity';
 
+
 @Component({
   selector: 'app-dialog',
   templateUrl: './dialog.component.html',

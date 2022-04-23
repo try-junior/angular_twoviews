@@ -1,9 +1,8 @@
+
 import { Component, OnInit, Input, ViewChildren ,QueryList, Injectable, Inject} from '@angular/core';
 import { UserEntity } from 'src/app/model/UserEntity';
 import { UsersService } from 'src/app/services/users.service';
 import { DOCUMENT } from '@angular/common';
-
-
 
 @Component({
   selector: 'app-table',
@@ -36,6 +35,7 @@ export class TableComponent implements OnInit {
    ) {
     this.usersService.getusers().then(
       users=>this.users=users);
+
    }
 
    edit(){
@@ -77,7 +77,7 @@ export class TableComponent implements OnInit {
      }
    };
 
+
   ngOnInit(): void {
   }
-
 }

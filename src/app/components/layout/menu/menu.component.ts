@@ -10,7 +10,6 @@ export class MenuComponent implements OnInit {
 
  @Output() selectView = new EventEmitter<boolean>();
 
- // option=false;
   constructor() { }
 
   ngOnInit(): void {
@@ -20,6 +19,7 @@ export class MenuComponent implements OnInit {
     // var this.selectView.emit(false);
       //this.option=!this.option;
       this.selectView.emit(option);
+
       }
 
 

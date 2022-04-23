@@ -1,5 +1,6 @@
 
 <table class="table table-bordered table-hover" id="tablecompleta">
+
   <thead class="table-dark">
     <tr>
       <th scope="col" *ngFor="let header of headers">
@@ -10,6 +11,7 @@
   <tbody>
     <tr
     *ngFor="let user of users let index= index" (mouseover)="show(index)" (mouseout)="hide(index)">
+
       <td>
         <label *ngIf="editable==false" size="20">{{user.name}}</label>
         <input *ngIf="editable==true" [value]="user.name" size="20">
@@ -46,9 +48,7 @@
         </div>
 
       </td>
-     <!-- <td>
-        <app-ngbd-dropdown-basic></app-ngbd-dropdown-basic>
-      </td>-->
+
     </tr>
   </tbody>
 </table>
