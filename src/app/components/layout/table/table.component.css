@@ -5,3 +5,16 @@
   font-family: 'arvo', 'arial', sans-serif;
 }
 
+table {
+  width: 80%;
+  table-layout: fixed;
+  margin: 0 auto;
+}
+
+th, td {
+  overflow: hidden;
+  width: 200px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+

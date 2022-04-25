@@ -14,10 +14,13 @@ export class ThumbnailTableComponent implements OnInit {
   labelsexperience: string[]=["Marketing","Development"];
   users: UserEntity[]=[];
 
+
   constructor(private usersService: UsersService) {
-    this.usersService.getusers().then(
+    this.usersService.getusers().subscribe(
       users=>this.users=users
     )
+
+
    }
 
 getUsersFromDepartment(dep:string){
