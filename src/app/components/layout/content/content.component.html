@@ -1,3 +1,9 @@
-<app-table *ngIf="selector" [headers]="headersColumn"></app-table>
-<app-thumbnail-table *ngIf="!selector"></app-thumbnail-table>
+<app-table *ngIf="selector" [headers]="headersColumn" (selectuserview)="user = $event"></app-table>
+<app-thumbnail-table *ngIf="!selector" ></app-thumbnail-table>
+<app-dialog [userr] =user class="dialogoo" id="myModal2"></app-dialog>
+
+<!--<app-menu (selectView)="selectvieww = $event"></app-menu>
+<app-content [selector]=selectvieww></app-content>-->
+
+
 

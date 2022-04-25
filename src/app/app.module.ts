@@ -16,8 +16,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SearchByEmailByNamePipe } from './pipes/search-by-email-by-name.pipe';
 import { SelectByDepartmentPipe } from './pipes/select-by-department.pipe';
-import { NgbdDropdownBasicComponent } from './components/layout/ngbd-dropdown-basic/ngbd-dropdown-basic.component';
-
 
 @NgModule({
   declarations: [
@@ -29,8 +27,6 @@ import { NgbdDropdownBasicComponent } from './components/layout/ngbd-dropdown-ba
     ContentComponent,
     SearchByEmailByNamePipe,
     SelectByDepartmentPipe,
-    NgbdDropdownBasicComponent,
-
 
   ],
   imports: [

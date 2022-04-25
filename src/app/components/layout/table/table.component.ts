@@ -1,5 +1,5 @@
 
-import { Component, OnInit, Input, ViewChildren ,QueryList, Injectable, Inject} from '@angular/core';
+import { Component, OnInit, Input, ViewChildren ,QueryList, Injectable, Inject, Output, EventEmitter} from '@angular/core';
 import { UserEntity } from 'src/app/model/UserEntity';
 import { UsersService } from 'src/app/services/users.service';
 import { DOCUMENT } from '@angular/common';
@@ -12,6 +12,8 @@ import { DOCUMENT } from '@angular/common';
 export class TableComponent implements OnInit {
   @Input() headers:any;
   @Input() rows:any;
+  @Output() selectuserview = new EventEmitter<UserEntity>();
+
 
 
   departments: string[]=["Marketing","Development"];
@@ -26,17 +28,13 @@ export class TableComponent implements OnInit {
   editing:boolean=false;
   olduser: UserEntity;
 
-  /*constructor(private usersService: UsersService) {
-    this.usersService.getusers().then(
-      users=>this.users=users
-    )
-   }*/
 
 
    constructor (
      @Inject(DOCUMENT) private document: Document ,
     private usersService: UsersService) {
     this.usersService.getusers().subscribe(
+
        users=>this.users=users);
 
       this.olduser={
@@ -54,6 +52,7 @@ export class TableComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
   edit(index :number=0,user:UserEntity){
     this.editable=!this.editable
     this.userselected = JSON.parse(JSON.stringify(user))
@@ -70,29 +69,28 @@ export class TableComponent implements OnInit {
     this.console.log("CANCEL olduser:"+this.olduser.id+" " + this.olduser.name+" "+this.olduser.email);
     var elemento =this.document.getElementById("#labelname"+index)
 
-
-    //elemento?.nodeValue=this.olduser.name
-
-   // this.olduser=this.userselected;
-
-
-   // this.userselected=JSON.parse(JSON.stringify(this.olduser));
-
    }
 
-   save(index :number,user:UserEntity){
+   save(index :number){
     this.editable=!this.editable
-    this.console.log("SAVE user:"+user.id+" " + user.name+" "+ user.email);
     this.console.log("SAVE userselected:"+this.userselected.id+" " + this.userselected.name+" "+this.userselected.email);
-    //user=this.userselected;
-    this.console.log("SAVE userselected:"+this.userselected.id+" " + this.userselected.name+" "+this.userselected.email);
-    //this.userselected=JSON.parse(JSON.stringify(this.olduser));
     //sendWS
+    this.usersService.setuser(this.userselected)
+
    }
-   modify(event: KeyboardEvent){
+   modifyname(event: KeyboardEvent){
     const target =event.target as HTMLInputElement;
-    //this.userselected.name=target.value;
-    this.olduser.name=target.value;
+    this.userselected.name=target.value;
+   }
+
+   modifyemail(event: KeyboardEvent){
+    const target =event.target as HTMLInputElement;
+    this.userselected.email=target.value;
+   }
+
+   modifydepartment(event: any ){
+    const target =event.target as HTMLSelectElement;
+    this.userselected.department=target.value;
    }
 
    show(index :number=0){
@@ -126,6 +124,8 @@ export class TableComponent implements OnInit {
      if(this.users!=null){
           this.userselected=this.users[index];
      }
+     this.selectuserview.emit(this.userselected);
+
    };
 
 

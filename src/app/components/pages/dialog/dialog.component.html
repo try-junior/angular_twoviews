@@ -36,11 +36,53 @@
           <!-- pie del diálogo -->
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CANCEL</button>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">REMOVE</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="remove">REMOVE</button>
           </div>
 
         </div>
       </div>
     </div>
+
+    <div class="modal fade" id="dialogo2">
+      <div class="modal-dialog modal-sm modal-dialog-centered">
+        <div class="modal-content">
+
+          <!-- cabecera del diálogo -->
+          <div class="modal-header">
+            <h4 class="modal-title">Add Row</h4>
+          </div>
+
+          <!-- cuerpo del diálogo -->
+          <div class="modal-body">
+            <tbody>
+                <tr>
+                  <Label>Name</Label>
+                  <input {{userr.name}}>
+                </tr>
+                <tr>
+                  <Label>Email</Label>
+                  <input {{userr.email}}>
+                </tr>
+                <tr>
+                  <select>
+                    <option *ngFor="let department of departments" [value]="userr.department">
+                      {{userr.department}}
+                    </option>
+                  </select>
+
+                </tr>
+              </tbody>
+            </div>
+
+          <!-- pie del diálogo -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CANCEL</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="remove">REMOVE</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
   </div>
 

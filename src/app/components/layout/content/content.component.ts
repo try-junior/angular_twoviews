@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { UserEntity } from 'src/app/model/UserEntity';
 
 @Component({
   selector: 'app-content',
@@ -11,7 +12,18 @@ export class ContentComponent implements OnInit {
 
   headersColumn=['NAME','EMAIL','DEPARTAMENT',''];
 
-  constructor() { }
+
+  user: UserEntity;
+  constructor() {
+    this.user={
+      id: -1,
+      name: '',
+      email: '',
+      department: '',//enum
+      created: '',
+    }
+
+   }
 
   ngOnInit(): void {
   }

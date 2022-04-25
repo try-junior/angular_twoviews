@@ -10,54 +10,36 @@ const url='http://34.241.217.201/users_aeb';
 })
 export class UsersService {
 
+
   constructor(private http: HttpClient) { }
 
-console=console;
-  /* getusers():Promise<UserEntity[]>{
-   return fetch(`http://34.241.217.201/users_aeb`)
-    .then((response)=>response.json())}*/
-
-     /* setuser(user:UserEntity){
-    return fetch(`http://34.241.217.201/users_aeb`)
-    .then((response)=>response.json())
-  }*/
-
+  console=console;
 
   getusers():Observable<UserEntity[]>{
     return this.http.get<UserEntity[]>(url);
   }
 
   setuser(user:UserEntity){
-    return this.http.patch(`${url}/${user.id}`,JSON.stringify(user))
+    this.http.put(`${url}/${user.id}`,user)
+    .subscribe(
+      data => {
+
+      console.log("PUT Request is successful ", data);
+    });
   }
 
   adduser(user:UserEntity){
-    return this.http.post(url,JSON.stringify(user))
+    return this.http.post(url,user).subscribe(
+      data => {
+      console.log("PUT Request is successful ", data);
+    });
   }
 
   delete(id:number) {
-    return this.http.delete(`${url}/${id}`);
+    return this.http.delete(`${url}/${id}`).subscribe(
+      data => {
+      console.log("PUT Request is successful ", data);
+    });
   }
-
-
-
-
-  /*this.httpClient.patch("http://127.0.0.1:3000/customers/1",
-{
-"email": "newcustomer001@gmail.com"
-})
-.subscribe(
-data => {
-console.log("PUT Request is successful ", data);
-},
-error => {
-console.log("Error", error);
-}
-); */
-
- /* getFirst():Observable<UserEntity>{
-    return this.http.get<UserEntity>('http://34.241.217.201/users_aeb/1');
-  }*/
-
 
 }

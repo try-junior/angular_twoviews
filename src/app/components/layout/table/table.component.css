@@ -17,4 +17,8 @@ th, td {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+button{
+  margin: 0;
+  padding: 0;
+}
 
