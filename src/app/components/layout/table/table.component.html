@@ -14,7 +14,11 @@
 
       <td>
         <label  id="labelname{{index}}"*ngIf="editable==false || (editable==true  && index!=currentindex)" size="20">{{user.name}}</label>
-        <input  *ngIf="editable==true  && index===currentindex"  (keyup)="modifyname($event)" [value]="userselected.name"  size="20">
+        <input  *ngIf="editable==true  && index===currentindex"  (keyup)="modifyname($event)" [value]="userselected.name" formControlName="name"   size="20">
+        <div *ngIf="nameControl.invalid">
+          <div *ngIf="nameControl.errors.required">Name required</div>
+          <div *ngIf="nameControl.errors.minlenght">Min size</div>
+        </div>
       </td>
       <td>
         <label *ngIf="editable==false || (editable==true  && index!=currentindex)" size="20">{{user.email}}</label>

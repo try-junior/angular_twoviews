@@ -12,16 +12,30 @@ export class DialogComponent implements OnInit {
 
   @Input() userr:any;
 
-
+  newuser: UserEntity
   departments: string[]=["Marketing","Development"];
-  
-  constructor(private usersService: UsersService) { }
+
+  constructor(private usersService: UsersService) {
+
+   this.newuser={
+      id: -1,
+      name: '',
+      email: '',
+      department: '',//enum
+      created: '',
+    }
+   }
 
   ngOnInit(): void {
   }
 
   remove(){
     this.usersService.delete(this.userr.id)
+  }
+
+  save(){
+    this.newuser.created=Date.now.toString();
+    this.usersService.adduser(this.newuser)
   }
 
 }

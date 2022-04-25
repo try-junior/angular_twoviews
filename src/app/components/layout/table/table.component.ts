@@ -1,8 +1,8 @@
-
-import { Component, OnInit, Input, ViewChildren ,QueryList, Injectable, Inject, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit, Input, Inject, Output, EventEmitter} from '@angular/core';
 import { UserEntity } from 'src/app/model/UserEntity';
 import { UsersService } from 'src/app/services/users.service';
 import { DOCUMENT } from '@angular/common';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-table',
@@ -13,7 +13,6 @@ export class TableComponent implements OnInit {
   @Input() headers:any;
   @Input() rows:any;
   @Output() selectuserview = new EventEmitter<UserEntity>();
-
 
 
   departments: string[]=["Marketing","Development"];
@@ -28,6 +27,10 @@ export class TableComponent implements OnInit {
   editing:boolean=false;
   olduser: UserEntity;
 
+  editForm:FormGroup;
+  nameControl:FormControl;
+  emailControl:FormControl;
+  departamentControl:FormControl;
 
 
    constructor (
@@ -53,13 +56,27 @@ export class TableComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  createEditForm(){
+    this.editForm = this.fb.group({
+      //id: -1,
+      name: ['',Validators.required,Validators.minLength(1)],
+      email: ['',Validators.required,Validators.minLength(4)],
+      department: ['',[Validators.required,Validators.minLength(1)]],//enum
+     // created: ['',Validators.required],
+    })
+
+    this.nameControl = this.editForm.get('name') as FormControl;
+    this.emailControl = this.editForm.get('email') as FormControl;
+    this.departamentControl = this.editForm.get('department') as FormControl;
+
+  }
+
   edit(index :number=0,user:UserEntity){
     this.editable=!this.editable
     this.userselected = JSON.parse(JSON.stringify(user))
-    this.console.log("olduser:"+this.olduser.id+" "+this.olduser.name)
-    //this.olduser=user
-    this.console.log("olduser:"+this.olduser.id+" "+this.olduser.name)
-    this.console.log("EDIT userselected:"+this.userselected.id+" " + this.userselected.name+" "+this.userselected.email);
+
+    //this.userselected = {...user};
+    this.editForm.patchValue(this.userselected)
 
    }
 
@@ -67,7 +84,6 @@ export class TableComponent implements OnInit {
     this.console.log("CANCEL userselected:"+this.userselected.id+" " + this.userselected.name+" "+this.userselected.email);
     this.editable=!this.editable
     this.console.log("CANCEL olduser:"+this.olduser.id+" " + this.olduser.name+" "+this.olduser.email);
-    var elemento =this.document.getElementById("#labelname"+index)
 
    }
 
