@@ -17,9 +17,7 @@ export class ThumbnailTableComponent implements OnInit {
 
   constructor(private usersService: UsersService) {
     this.usersService.getusers().subscribe(
-      users=>
-      //this.users=users
-      this.users=users.concat(users)
+      users=>this.users=users
     )
 
 
