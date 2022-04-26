@@ -68,6 +68,9 @@
                   <input [value]="newuser.email">
                 </tr>
                 <tr>
+                  <div>
+                    <Label>Departament</Label>
+                  </div>
                   <select>
                     <option *ngFor="let department of departments" [(ngModel)]="newuser.department">
                       {{department}}

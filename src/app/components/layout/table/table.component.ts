@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Inject, Output, EventEmitter} from '@angular/
 import { UserEntity } from 'src/app/model/UserEntity';
 import { UsersService } from 'src/app/services/users.service';
 import { DOCUMENT } from '@angular/common';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-table',
@@ -13,7 +13,6 @@ export class TableComponent implements OnInit {
   @Input() headers:any;
   @Input() rows:any;
   @Output() selectuserview = new EventEmitter<UserEntity>();
-
 
   departments: string[]=["Marketing","Development"];
 
@@ -27,15 +26,23 @@ export class TableComponent implements OnInit {
   editing:boolean=false;
   olduser: UserEntity;
 
-  editForm:FormGroup;
-  nameControl:FormControl;
-  emailControl:FormControl;
-  departamentControl:FormControl;
 
+  nameControl: FormControl = new FormControl;
+  emailControl:FormControl = new FormControl;
+  departamentControl:FormControl = new FormControl;
+
+  editForm= this.fb.group({
+    //id: -1,
+    name: ['',Validators.required,Validators.minLength(1)],
+    email: ['',Validators.required,Validators.minLength(4)],
+    department: ['',[Validators.required,Validators.minLength(1)]],//enum
+   // created: ['',Validators.required],
+  });
 
    constructor (
      @Inject(DOCUMENT) private document: Document ,
-    private usersService: UsersService) {
+    private usersService: UsersService,
+    private fb: FormBuilder) {
     this.usersService.getusers().subscribe(
 
        users=>this.users=users);
@@ -48,8 +55,8 @@ export class TableComponent implements OnInit {
         created: '',
       }
 
-     /* this.usersService.getFirst().subscribe(
-        user=>this.olduser=user);*/
+
+
    }
 
 
